@@ -4,14 +4,14 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
-import android.widget.ImageView;
 
 /**
  * Created by Stew on 2016/1/15.
  * TODO
  */
-public class CircleView extends ImageView {
+public class CircleView extends AppCompatImageView {
 
     private Paint inCirclePaint, mTextPaint;
     private Context context;
@@ -87,7 +87,7 @@ public class CircleView extends ImageView {
             length = mMeasureHeight;
         }
 
-        length = length - ViewUtil.dp2px(context, 20);
+        length = length - ViewUtil.dpToPx(context, 20);
         radiusOfCircle = (length) / 2;
     }
 

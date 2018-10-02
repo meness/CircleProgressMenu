@@ -1,24 +1,22 @@
 package com.stew.myapplication;
 
 import android.content.Context;
-
-import java.lang.reflect.Field;
+import android.content.res.Resources;
+import android.util.TypedValue;
 
 /**
  * Created by Stew on 2016/5/23.
  * TODO
  */
-public class ViewUtil {
+class ViewUtil {
 
-    /**
-     * dp转px
-     * @param context
-     * @param dpValue
-     * @return
-     */
-    public static int dp2px(Context context, float dpValue) {
-        final float scale = context.getResources().getDisplayMetrics().density;
-        return (int) (dpValue * scale + 0.5f);
+    static int dpToPx(final Context context, final float dpValue) {
+        Resources r = context.getResources();
+        return (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                dpValue,
+                r.getDisplayMetrics()
+        );
     }
 
 

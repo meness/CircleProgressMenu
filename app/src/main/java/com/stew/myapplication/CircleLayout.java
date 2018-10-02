@@ -22,61 +22,43 @@ import android.widget.RelativeLayout;
 
 public class CircleLayout extends RelativeLayout {
 
-    //center arc paint def color
-    private Paint centerArcDefPaint;
-
-    //center arc paint with angleAnimation
-    private Paint centerArcPaint;
-
-    //center circle paint
-    private Paint centerCirclePaint;
-
-    //center circle top text paint  （u can use start、continue、done as progress text）
-    private Paint centerCircleTopTextPaint;
-
-    //center circle bottom text paint  (u can use around circle title as progress detail text)
-    private Paint centerCircleBottomPaint;
-
-    //start degree in a clockwise direction
-    private float degree = 90;
-
-    //the values of matrix by rotate the degree
-    private float[] values = new float[9];
-
     //around circle layout width ,height > width
     int aroundCircleLayoutWidth = (int) getResources().getDimension(R.dimen.aroundCircleLayoutWidth);
-
     //around circle layout height
     int aroundCircleLayoutHeight = (int) getResources().getDimension(R.dimen.aroundCircleLayoutHeight);
-
     //around circle layout width ,height = width
     int aroundWhiteCircleLayoutWidth = (int) getResources().getDimension(R.dimen.aroundWhiteCircleLayoutWidth);
-
     //around circle layout height
     int aroundWhiteCircleLayoutHeight = (int) getResources().getDimension(R.dimen.aroundWhiteCircleLayoutHeight);
-
     //center to around circle radius
     int centerToAroundCircleRadius = (int) getResources().getDimension(R.dimen.outRadius);
-
+    RectF mRectangle = new RectF();
+    //center arc paint def color
+    private Paint centerArcDefPaint;
+    //center arc paint with angleAnimation
+    private Paint centerArcPaint;
+    //center circle paint
+    private Paint centerCirclePaint;
+    //center circle top text paint  （u can use start、continue、done as progress text）
+    private Paint centerCircleTopTextPaint;
+    //center circle bottom text paint  (u can use around circle title as progress detail text)
+    private Paint centerCircleBottomPaint;
+    //start degree in a clockwise direction
+    private float degree = 90;
+    //the values of matrix by rotate the degree
+    private float[] values = new float[9];
     //around circle bottom title text en
     private int[] aroundCircleTitleEn;
-
     //around circle bottom title text cn
     private int[] aroundCircleTitleCn;
-
     //around circle word ,set by yourself
     private int[] circleIcon;
-
     //status of every circle
     private int[] circleCompleteStatusList;
-
     //count of around circles
     private int aroundCircleCount;
-
     //current progress num
     private int progressNum;
-
-
     private String centerCircleText;
     private float centerCircleTextSize;
     private int centerCircleTextColor;
@@ -86,12 +68,9 @@ public class CircleLayout extends RelativeLayout {
     private int aroundCircleDefColor;
     private int aroundCircleDoingColor;
     private int aroundCircleCompleteColor;
-
     private int aroundSmallCircleColor;
     private float aroundCircleTitleTextSize;
     private int aroundCircleTitleTextColor;
-
-
     private Context context;
     private Matrix matrix;
     private circleClickListener mListener;
@@ -99,7 +78,6 @@ public class CircleLayout extends RelativeLayout {
     private float mSweepAnglePer;
     private float mSweepAngle = 0;
     private Animation anim;
-    RectF mRectangle = new RectF();
 
     public CircleLayout(Context context) {
         super(context);
@@ -145,13 +123,13 @@ public class CircleLayout extends RelativeLayout {
         setWillNotDraw(false);
         initPaintAndAnim();
 
-        /**
-         * add circle around of the layout
+        /*
+          add circle around of the layout
          */
         addAroundCircle();
 
-        /**
-         * add small white circle around of the layout
+        /*
+          add small white circle around of the layout
          */
         addAroundSmallCircle();
     }
@@ -175,8 +153,8 @@ public class CircleLayout extends RelativeLayout {
             attrEntity.aroundCircleTitleEn = getResources().getString(aroundCircleTitleEn[i]);
             CircleView itemCView = new CircleView(context, attrEntity, circleCompleteStatusList[i], i);
             LayoutParams params = new LayoutParams(aroundCircleLayoutWidth, aroundCircleLayoutHeight);
-            params.leftMargin = (int) ((1 + values[0]) * centerToAroundCircleRadius);
-            params.topMargin = (int) ((1 - values[3]) * centerToAroundCircleRadius);
+            params.leftMargin = (int) ((1.2 + values[0]) * centerToAroundCircleRadius);
+            params.topMargin = (int) ((1.2 - values[3]) * centerToAroundCircleRadius);
             itemCView.setLayoutParams(params);
             itemCView.setTag(i + 1);
 
@@ -184,7 +162,7 @@ public class CircleLayout extends RelativeLayout {
                 itemCView.setImageResource(circleIcon[i]);
             }
 
-            itemCView.setPadding(ViewUtil.dp2px(context, 28), ViewUtil.dp2px(context, 28), ViewUtil.dp2px(context, 28), ViewUtil.dp2px(context, 58));
+            itemCView.setPadding(ViewUtil.dpToPx(context, 28), ViewUtil.dpToPx(context, 28), ViewUtil.dpToPx(context, 28), ViewUtil.dpToPx(context, 58));
             itemCView.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -208,8 +186,8 @@ public class CircleLayout extends RelativeLayout {
             degree -= 360.0f / aroundCircleCount;
             whiteCircleView wCView = new whiteCircleView(context, aroundSmallCircleColor);
             LayoutParams params = new LayoutParams(aroundWhiteCircleLayoutWidth, aroundWhiteCircleLayoutHeight);
-            params.leftMargin = (int) ((1 + values[0]) * (centerToAroundCircleRadius) + ViewUtil.dp2px(context, 32) - values[0] * ViewUtil.dp2px(context, 30));
-            params.topMargin = (int) ((1 - values[3]) * (centerToAroundCircleRadius) + ViewUtil.dp2px(context, 32) + values[3] * ViewUtil.dp2px(context, 30));
+            params.leftMargin = (int) ((1.2 + values[0]) * (centerToAroundCircleRadius) + ViewUtil.dpToPx(context, 32) - values[0] * ViewUtil.dpToPx(context, 30));
+            params.topMargin = (int) ((1.2 - values[3]) * (centerToAroundCircleRadius) + ViewUtil.dpToPx(context, 32) + values[3] * ViewUtil.dpToPx(context, 30));
             wCView.setLayoutParams(params);
             wCView.setText(String.valueOf(i + 1));
             wCView.setTextSize(12);
@@ -259,10 +237,6 @@ public class CircleLayout extends RelativeLayout {
         super.onDraw(canvas);
     }
 
-    public interface circleClickListener {
-        void click(int tag);
-    }
-
     public void setOnClickListener(circleClickListener mListener) {
         this.mListener = mListener;
     }
@@ -271,21 +245,6 @@ public class CircleLayout extends RelativeLayout {
         this.mSweepAngle = degree;
         this.startAnimation(anim);
     }
-
-    public class AngleAnimation extends Animation {
-
-        @Override
-        protected void applyTransformation(float interpolatedTime, Transformation t) {
-            super.applyTransformation(interpolatedTime, t);
-            if (interpolatedTime < 1.0f) {
-                mSweepAnglePer = interpolatedTime * mSweepAngle;
-            } else {
-                mSweepAnglePer = mSweepAngle;
-            }
-            postInvalidate();
-        }
-    }
-
 
     private void initPaintAndAnim() {
 
@@ -349,6 +308,24 @@ public class CircleLayout extends RelativeLayout {
 
     public void setProgressNum(int progressNum) {
         this.progressNum = progressNum;
+    }
+
+    public interface circleClickListener {
+        void click(int tag);
+    }
+
+    public class AngleAnimation extends Animation {
+
+        @Override
+        protected void applyTransformation(float interpolatedTime, Transformation t) {
+            super.applyTransformation(interpolatedTime, t);
+            if (interpolatedTime < 1.0f) {
+                mSweepAnglePer = interpolatedTime * mSweepAngle;
+            } else {
+                mSweepAnglePer = mSweepAngle;
+            }
+            postInvalidate();
+        }
     }
 
 

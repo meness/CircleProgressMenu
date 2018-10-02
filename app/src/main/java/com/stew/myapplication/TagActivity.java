@@ -11,24 +11,23 @@ import android.widget.TextView;
  * mail: stewforani@gmail.com
  */
 public class TagActivity extends Activity {
-    private int tag;
+
+    public static Intent getInstance(Context context, int tag) {
+        Intent intent = new Intent(context, TagActivity.class);
+        intent.putExtra("tag", tag);
+        return intent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tag);
 
-        TextView tag = (TextView) findViewById(R.id.tvTag);
+        TextView tag = findViewById(R.id.tvTag);
 
         String str = "tag : " + getIntent().getIntExtra("tag", 0);
 
         tag.setText(str);
 
-    }
-
-    public static Intent getInstance(Context context, int tag) {
-        Intent intent = new Intent(context, TagActivity.class);
-        intent.putExtra("tag", tag);
-        return intent;
     }
 }

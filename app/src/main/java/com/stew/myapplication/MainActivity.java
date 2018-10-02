@@ -1,7 +1,7 @@
 package com.stew.myapplication;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        final CircleLayout circleLayout = (CircleLayout) findViewById(R.id.circle_layout);
+        final CircleLayout circleLayout = findViewById(R.id.circle_layout);
         circleLayout.setView(aroundCircleTitleEn, aroundCircleTitleCn, circleIcon, aroundCircleCount, circleCompleteStatusList);
         circleLayout.setProgressNum(3);
         circleLayout.initView();

@@ -3,17 +3,16 @@ package com.stew.myapplication;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
-import android.widget.TextView;
 
 /**
  * Created by Stew on 2016/1/15.
  * TODO
  */
-public class whiteCircleView extends TextView {
+public class whiteCircleView extends AppCompatTextView {
 
     private Paint CirclePaint;
-    private Context context;
 
     private int circleColor;
     private int RadiusCircle;
@@ -22,7 +21,6 @@ public class whiteCircleView extends TextView {
 
     public whiteCircleView(Context context, int circleColor) {
         super(context);
-        this.context = context;
         this.circleColor = circleColor;
         initView();
     }
